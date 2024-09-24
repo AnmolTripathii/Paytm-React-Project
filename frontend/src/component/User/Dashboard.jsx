@@ -154,7 +154,13 @@ const Dashboard = () => {
             });
         }
     }, [weeklyData, loading]);
-
+    if (!localStorage.getItem('token')) {
+        return (
+            <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
+                <h1 className="text-3xl font-bold">Session has expired. Please log in again.</h1>
+            </div>
+        );
+    }
     return (
         <div className='lg:h-[93.3vh] '>
             <div className="bg-slate-800 flex flex-col items-center justify-start  lg:h-[93.3vh] p-4">
