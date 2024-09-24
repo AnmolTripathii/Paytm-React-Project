@@ -158,6 +158,9 @@ function Payment() {
       }
     } finally {
       setPaying(false);
+      setAmount('');
+      setMessage('');
+      setPassword('');
     }
   };
 
@@ -177,7 +180,7 @@ function Payment() {
                   }`}
               >
                 <p className="font-bold md:text-lg text-xs">
-                  {transaction.isUser ? `You Paid ${receiver.firstName}` : `${receiver.firstName} Paid You`}
+                  {transaction.isUser ? `${receiver.firstName} Paid You` : `You Paid ${receiver.firstName}`}
                 </p>
                 <p className="text-sm text-gray-400">{transaction.purpose}</p>
                 <div className="md:text-xl text-base lg:text-2xl flex items-center font-semibold md:mt-2">

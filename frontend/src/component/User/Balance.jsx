@@ -3,8 +3,8 @@ import { FaIndianRupeeSign } from "react-icons/fa6";
 import { AiOutlineClose } from 'react-icons/ai';
 import { gsap } from "gsap";
 import axios from 'axios';
-import { Loader } from 'rsuite'; 
-import 'rsuite/dist/rsuite.min.css'; 
+import { Loader } from 'rsuite';
+import 'rsuite/dist/rsuite.min.css';
 
 function Balance() {
   const [openBox, setOpenBox] = useState(false);
@@ -44,16 +44,19 @@ function Balance() {
     } catch (error) {
       setLoading(false);
       console.log("Error fetching Balance", error);
-    }
+    }  finally {
+      setLoading(false);
+      setPassword(''); 
+  }
   };
 
   if (!localStorage.getItem('token')) {
     return (
-        <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
-            <h1 className="text-3xl font-bold">Session has expired. Please log in again.</h1>
-        </div>
+      <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
+        <h1 className="text-3xl font-bold">Session has expired. Please log in again.</h1>
+      </div>
     );
-}
+  }
   return (
     <div className='flex gap-12 bg-[#F5F5F5] lg:h-[93.1vh] flex-col items-start justify-start p-8'>
       <div className='flex flex-col items-start gap-8 justify-start'>
@@ -72,7 +75,7 @@ function Balance() {
           disabled={loading}
           className='font-semibold text-xl text-slate-950 hover:text-gray-400 hover:shadow-sm hover:shadow-gray-500 border border-slate-950 py-2 px-4 rounded-md transition-all duration-300 ease-in'
         >
-         {loading ? <Loader content="Loading..." /> : "CHECK"}
+          {loading ? <Loader content="Loading..." /> : "CHECK"}
         </button>
       </div>
 
@@ -101,9 +104,9 @@ function Balance() {
             <button
               className="font-semibold text-xl text-slate-200 bg-slate-950 hover:bg-slate-800 hover:text-white py-2 px-6 rounded-md transition-all duration-300 ease-in shadow-lg"
               onClick={checkHandle}
-              
+
             >
-               CHECK
+              CHECK
             </button>
           </div>
         </div>
