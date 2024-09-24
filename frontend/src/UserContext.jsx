@@ -21,11 +21,14 @@ export const UserProvider = ({ children }) => {
         }
 
         try {
-            const response = await axios.get('https://paytm-react-project.vercel.app/api/v1/user/get-user-details', {
-                headers: {
+            const response = await axios.get(
+                'https://paytm-react-project.vercel.app/api/v1/user/get-user-details',
+                {
+                  headers: {
                     Authorization: `Bearer ${token}`,
-                },
-            });
+                  },
+                }
+              )
             setUser(response.data);
             console.log("User details fetched:", response.data);
         } catch (error) {
