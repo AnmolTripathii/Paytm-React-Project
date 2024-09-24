@@ -176,12 +176,12 @@ const Dashboard = () => {
                                 <div className="flex items-center text-green-400 justify-start font-bold mb-4 sm:mb-0">
                                     <FaPlus size={20} className="mr-2" />
                                     <FaIndianRupeeSign className="mr-1" />
-                                    {transactionInfo.lastTransaction?.money_sent ?? 0}
+                                    {transactionInfo.lastTransaction?.money_received ?? 0}
                                 </div>
                                 <div className="flex items-center text-red-400 justify-start font-bold sm:justify-end">
                                     <FaMinus size={20} className="mr-2" />
                                     <FaIndianRupeeSign className="mr-1" />
-                                    {transactionInfo.lastTransaction?.money_received ?? 0}
+                                    {transactionInfo.lastTransaction?.money_sent ?? 0}
                                 </div>
                             </div>
                         </div>
