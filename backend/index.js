@@ -6,7 +6,7 @@ require('dotenv').config({
 });
 
 const corsOptions = {
-    origin: 'http://localhost:5173', // Specify the origin
+    origin: 'https://paytm-react-project-c4dz.vercel.app', // Specify the origin
     credentials: true, // Allow credentials
 };
 
