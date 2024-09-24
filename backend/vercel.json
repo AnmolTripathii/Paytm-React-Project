@@ -8,8 +8,12 @@
     ],
     "routes": [
       {
-        "src": "/api/(.*)",
-        "dest": "index.js"
+        "src": "/api/v1/(.*)",
+        "dest": "/index.js"
       }
-    ]
+    ],
+    "env": {
+      "ENV_VARIABLE": "@env-variable-in-vercel"
+    }
   }
+  
