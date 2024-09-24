@@ -139,7 +139,7 @@ function Account() {
     );
 }
   return (
-    <div className="p-6 lg:p-12 bg-slate-950 text-white flex flex-col lg:h-[93.1vh] custom-scrollbar overflow-y-auto gap-8 lg:gap-4">
+    <div className="p-6 lg:p-12 bg-slate-950 text-white flex flex-col lg:h-[93.1vh] gap-8 lg:gap-4">
       <h1 className="font-bold text-2xl lg:text-5xl mb-4 text-center">Your Profile</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full lg:w-3/4 mx-auto">
