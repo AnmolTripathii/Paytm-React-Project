@@ -39,7 +39,7 @@ const Dashboard = () => {
         datasets: []
     });
     const [transactionInfo, setTransactionInfo] = useState({});
-    const { user,setUser} = useState('')
+    const { username,setUsername} = useState('')
 
     const handleDetail= async ()=>{
         try {
@@ -54,7 +54,7 @@ const Dashboard = () => {
           )
           console.log(response)
           console.log(response.data)
-          setUser(response.data.firstName);
+          setUsername(response.data.firstName);
         } catch (error) {
           console.log("Error featiching the details",error)
         }
@@ -161,7 +161,7 @@ const Dashboard = () => {
                 <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 w-full max-w-6xl mx-auto">
                     <div className="lg:col-span-2 bg-gray-800 p-6 md:p-8 rounded-lg shadow-xl shadow-slate-900 text-white">
                         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-6 lg:mb-8">
-                            Welcome, {user}!
+                            Welcome, {username}!
                         </h1>
 
                         <div className="mb-6 lg:mb-8">
