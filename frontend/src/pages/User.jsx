@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 
 function User() {
   return (
-    <div className="flex flex-col lg:flex-row lg:h-[93.3vh] overflow-y-auto custom-scrollbar">
+    <div className="flex flex-col lg:flex-row lg:h-[100vh] overflow-y-auto custom-scrollbar">
       {/* Sidebar */}
       <div className="lg:flex items-start justify-start hidden ">
         <Sidebar />
