@@ -39,7 +39,7 @@ const Dashboard = () => {
         datasets: []
     });
     const [transactionInfo, setTransactionInfo] = useState({});
-    const { user,setUser} = useState()
+    const { user,setUser} = useState('')
 
     const handleDetail= async ()=>{
         try {
@@ -53,6 +53,7 @@ const Dashboard = () => {
             }
           )
           console.log(response)
+          console.log(response.data)
           setUser(response.data.firstName);
         } catch (error) {
           console.log("Error featiching the details",error)
