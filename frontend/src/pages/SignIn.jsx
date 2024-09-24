@@ -13,7 +13,7 @@ const SignIn = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'https://paytm-react-project.onrender.com/api/v1/user/signin',
+        'https://paytm-react-project.vercel.app/api/v1/user/signin',
         { username, password },
         { withCredentials: true }
       );

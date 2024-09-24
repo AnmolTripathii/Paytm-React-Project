@@ -16,7 +16,7 @@ const SearchBar = () => {
         try {
           const token = localStorage.getItem('token');
           const response = await axios.get(
-            'https://paytm-react-project.onrender.com/api/v1/user/get-user-details',
+            'https://paytm-react-project.vercel.app/api/v1/user/get-user-details',
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -38,7 +38,7 @@ const SearchBar = () => {
                 try {
                     const token = localStorage.getItem('token');
                     const response = await axios.post(
-                        'https://paytm-react-project.onrender.com/api/v1/user/bulk',
+                        'https://paytm-react-project.vercel.app/api/v1/user/bulk',
                         { filter: debouncedSearchedTerm },
                         {
                             headers: {

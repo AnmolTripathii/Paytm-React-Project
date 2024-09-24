@@ -17,7 +17,7 @@ const SignUp = () => {
 
     try {
       const response = await axios.post(
-        'https://paytm-react-project.onrender.com/api/v1/user/signup',
+        'https://paytm-react-project.vercel.app/api/v1/user/signup',
         { firstName, lastName, username, password },
         { withCredentials: true }
       );
