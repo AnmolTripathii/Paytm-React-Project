@@ -36,7 +36,7 @@ function Account() {
       try {
         const token = localStorage.getItem('token');
         const response = await axios.get(
-          'https://paytm-react-project.vercel.app/api/v1/user/get-user-details',
+          'https://paytm-react-project.onrender.com/api/v1/user/get-user-details',
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -82,7 +82,7 @@ function Account() {
       try {
         const token = localStorage.getItem('token');
         const response = await axios.post(
-          'https://paytm-react-project.vercel.app/api/v1/user/updateProfilePic',
+          'https://paytm-react-project.onrender.com/api/v1/user/updateProfilePic',
           formData,
           {
             headers: {
