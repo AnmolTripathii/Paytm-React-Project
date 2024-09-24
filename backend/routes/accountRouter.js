@@ -54,7 +54,7 @@ router.post("/transfer", authMiddleware, async (req, res) => {
     })
     let userSubmittedPassword = req.body.password;
     if(user.password != userSubmittedPassword){
-        res.status(401).json({
+       return res.status(401).json({
             msg : "wrong password",
         })
     }

@@ -18,9 +18,10 @@ export const UserProvider = ({ children }) => {
                 },
             });
             setUser(response.data);
+            console.log(response.data)
         } catch (error) {
             console.error("Error fetching user details", error);
-            setUser(null);
+            setUser({});
         } 
     };
 

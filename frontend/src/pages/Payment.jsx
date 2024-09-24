@@ -8,10 +8,10 @@ import { FaUserCheck } from "react-icons/fa";
 import { FaTimes } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';  // import toast
-import 'react-toastify/dist/ReactToastify.css'; // import toast CSS
-import 'react-toastify/dist/ReactToastify.css'; // import toast CSS
-import { Loader } from 'rsuite'; // Importing React Suite Loader
+import { toast, ToastContainer } from 'react-toastify';  
+import 'react-toastify/dist/ReactToastify.css'; 
+import 'react-toastify/dist/ReactToastify.css';
+import { Loader } from 'rsuite'; 
 import 'rsuite/dist/rsuite.min.css';
 function Payment() {
   const {id} = useParams()
