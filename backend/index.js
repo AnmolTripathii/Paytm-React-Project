@@ -5,20 +5,29 @@ require('dotenv').config({
     path: './.env' 
 });
 
+// Define CORS options
 const corsOptions = {
-    origin: 'https://paytm-react-project-c4dz.vercel.app', // Specify the origin
-    credentials: true, // Allow credentials
+    origin: 'https://paytm-react-project-c4dz.vercel.app', // Specify the allowed origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Specify allowed HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
+    credentials: true, // Allow credentials (cookies, authorization headers)
 };
 
+// Use CORS middleware with options
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Handle preflight requests for all routes
+
+// Middleware to parse JSON requests
 app.use(express.json());
 
+// Import your routes
 const mainRouter = require("./routes");
 
-
-
+// Mount your API routes under /api/v1
 app.use("/api/v1", mainRouter);
-app.listen(3000, function () {
-    console.log('backend is running ');
 
+// Start the server on port 3000
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, function () {
+    console.log(`Backend is running on port ${PORT}`);
 });
