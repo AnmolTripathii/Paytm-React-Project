@@ -27,7 +27,7 @@ function Pay() {
         try {
           const token = localStorage.getItem('token');
           const response = await axios.post(
-            'http://localhost:3000/api/v1/user/bulk',
+            'https://paytm-react-project.vercel.app/api/v1/user/bulk',
             { filter: debouncedSearchedTerm },
             {
               headers: {
