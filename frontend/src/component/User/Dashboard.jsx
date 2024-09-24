@@ -162,8 +162,8 @@ const Dashboard = () => {
         );
     }
     return (
-        <div className='lg:h-[93.3vh] '>
-            <div className="bg-slate-800 flex flex-col items-center justify-start  lg:h-[93.3vh] p-4">
+        <div className='lg:h-[93.3vh] overflow-y-auto '>
+            <div className="bg-slate-800 flex flex-col items-center justify-start overflow-y-auto  lg:h-[93.3vh] p-4">
                 <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 w-full max-w-6xl mx-auto">
                     <div className="lg:col-span-2 bg-gray-800 p-6 md:p-8 rounded-lg shadow-xl shadow-slate-900 text-white">
                         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-6 lg:mb-8">
