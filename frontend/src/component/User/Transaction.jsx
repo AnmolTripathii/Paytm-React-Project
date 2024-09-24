@@ -53,7 +53,7 @@ function Transaction() {
     );
 }
   return (
-    <div className='min-h-[93.3vh] bg-black flex flex-col justify-start gap-24 overflow-y-auto  lg:h-[93.3vh]'>
+    <div className='min-h-[93.3vh] bg-black flex flex-col justify-start gap-24 lg:h-[93.1vh] overflow-y-auto'>
       <div className='bg-slate-900 flex flex-col gap-4 p-4'>
         <h1 className='font-bold text-2xl lg:text-6xl text-slate-400'>See Your Transaction</h1>
         <h3 className='font-bold text-xl lg:text-2xl underline underline-offset-3 text-slate-400'>

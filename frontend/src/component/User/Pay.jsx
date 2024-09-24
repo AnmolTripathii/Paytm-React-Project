@@ -57,7 +57,7 @@ function Pay() {
 }
 
   return (
-    <div className="p-4 lg:p-8 bg-slate-950 flex flex-col gap-4 lg:gap-8 text-white lg:h-[93.1vh] ">
+    <div className="p-4 lg:p-8 bg-slate-950 flex flex-col gap-4 lg:gap-8 text-white lg:h-[93.1vh] overflow-y-auto">
       <h1 className='font-bold text-2xl lg:text-6xl mb-4'>Make a payment</h1>
       <h2 className="text-lg lg:text-2xl mb-6 text-slate-300">Find the person to pay or select a recipient</h2>
 
