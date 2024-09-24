@@ -39,22 +39,22 @@ const Dashboard = () => {
         datasets: []
     });
     const [transactionInfo, setTransactionInfo] = useState({});
-    const { username,setUsername} = useState('')
+    const [first,setFirst] = useState('')
 
     const handleDetail= async ()=>{
         try {
           const token = localStorage.getItem('token');
           const response = await axios.get(
-            'https://paytm-react-project.vercel.app/api/v1/user/get-user-details',
+            'http://localhost:3000/api/v1/user/get-user-details',
             {
               headers: {
                 Authorization: `Bearer ${token}`,
               },
             }
           )
+          setFirst(response.data.firstName)
           console.log(response)
           console.log(response.data)
-          setUsername(response.data.firstName);
         } catch (error) {
           console.log("Error featiching the details",error)
         }
@@ -64,7 +64,7 @@ const Dashboard = () => {
         try {
             const token = localStorage.getItem('token');
 
-            const response = await axios.get("https://paytm-react-project.vercel.app/api/v1/account/dashboard-transaction-info", {
+            const response = await axios.get("http://localhost:3000/api/v1/account/dashboard-transaction-info", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -93,7 +93,7 @@ const Dashboard = () => {
     const fetchWeeklyTransactions = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('https://paytm-react-project.vercel.app/api/v1/account/transaction-weekly-data', {
+            const response = await axios.get('http://localhost:3000/api/v1/account/transaction-weekly-data', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -161,7 +161,7 @@ const Dashboard = () => {
                 <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 w-full max-w-6xl mx-auto">
                     <div className="lg:col-span-2 bg-gray-800 p-6 md:p-8 rounded-lg shadow-xl shadow-slate-900 text-white">
                         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-6 lg:mb-8">
-                            Welcome, {username}!
+                            Welcome, {first}!
                         </h1>
 
                         <div className="mb-6 lg:mb-8">

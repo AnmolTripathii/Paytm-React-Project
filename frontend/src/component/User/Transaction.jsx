@@ -17,7 +17,7 @@ function Transaction() {
       const token = localStorage.getItem('token');
 
       const response = await axios.get(
-        'https://paytm-react-project.vercel.app/api/v1/account/transaction-history',
+        'http://localhost:3000/api/v1/account/transaction-history',
         {
           headers: {
             Authorization: `Bearer ${token}`,
