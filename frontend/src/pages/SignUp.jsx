@@ -22,6 +22,7 @@ const SignUp = () => {
         { withCredentials: true }
       );
       localStorage.setItem('token', response.data.token);
+      console.log(response.data.token)
       setSuccess('Sign Up successful! Redirecting to dashboard...');
       setError('');
 
