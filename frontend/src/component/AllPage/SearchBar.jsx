@@ -4,15 +4,34 @@ import { FaUserCircle, FaSearch } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 import { useDebounce } from 'use-debounce';
 import { Link, useNavigate } from 'react-router-dom';
-import { useUser } from '../../UserContext';
 const SearchBar = () => {
     const [show, setShow] = useState(false);
     const [searchedTerm, setSearchedTerm] = useState('');
     const [appearedUser, setAppearedUser] = useState([]);
     const [debouncedSearchedTerm] = useDebounce(searchedTerm, 200);
     const navigate = useNavigate()
-    const { user } = useUser()
+    const [image,setImage] = useState('')
 
+    const handleDetail= async ()=>{
+        try {
+          const token = localStorage.getItem('token');
+          const response = await axios.get(
+            'https://paytm-react-project.vercel.app/api/v1/user/get-user-details',
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          )
+          console.log(response)
+          setImage(response.data.profilePic||'')
+        } catch (error) {
+          console.log("Error featichin the details",error)
+        }
+      }
+      useEffect(()=>{
+        handleDetail()
+      },[])
     useEffect(() => {
         const getUser = async () => {
             if (debouncedSearchedTerm) {
@@ -84,9 +103,9 @@ const SearchBar = () => {
 
             <div className='flex items-center justify-center p-2'>
                 <button onClick={() => setShow(!show)}>
-                    {user.profilePic === '' ? (<FaUserCircle size={34} className="text-gray-800" />) : (<img
-                        src={user.profilePic}
-                        alt={user.firstName}
+                    {image === '' ? (<FaUserCircle size={34} className="text-gray-800" />) : (<img
+                        src={image}
+                        alt={"Img"}
                         className="w-8 h-8 rounded-full object-cover"
                     />)}
 

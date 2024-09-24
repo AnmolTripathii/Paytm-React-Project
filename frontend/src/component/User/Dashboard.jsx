@@ -3,7 +3,6 @@ import axios from 'axios';
 import { FaIndianRupeeSign, FaPlus, FaMinus, FaBell } from "react-icons/fa6";
 import { Chart as ChartJS, ArcElement, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { useUser } from '../../UserContext';
 
 ChartJS.register(
     ArcElement,
@@ -40,8 +39,25 @@ const Dashboard = () => {
         datasets: []
     });
     const [transactionInfo, setTransactionInfo] = useState({});
-    const { user } = useUser()
+    const { user,setUser} = useState()
 
+    const handleDetail= async ()=>{
+        try {
+          const token = localStorage.getItem('token');
+          const response = await axios.get(
+            'https://paytm-react-project.vercel.app/api/v1/user/get-user-details',
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          )
+          console.log(response)
+          setUser(response.data.firstName);
+        } catch (error) {
+          console.log("Error featiching the details",error)
+        }
+      }
 
     const fetchTransactionInfo = async () => {
         try {
@@ -93,6 +109,7 @@ const Dashboard = () => {
     useEffect(() => {
         fetchWeeklyTransactions();
         fetchTransactionInfo();
+        handleDetail()
     }, []);
 
     useEffect(() => {
@@ -143,7 +160,7 @@ const Dashboard = () => {
                 <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 w-full max-w-6xl mx-auto">
                     <div className="lg:col-span-2 bg-gray-800 p-6 md:p-8 rounded-lg shadow-xl shadow-slate-900 text-white">
                         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-6 lg:mb-8">
-                            Welcome, {user.firstName} {' '} {user.lastName}!
+                            Welcome, {user}!
                         </h1>
 
                         <div className="mb-6 lg:mb-8">
