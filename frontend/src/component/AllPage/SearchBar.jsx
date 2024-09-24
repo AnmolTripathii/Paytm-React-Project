@@ -4,7 +4,7 @@ import { FaUserCircle, FaSearch } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 import { useDebounce } from 'use-debounce';
 import { Link, useNavigate } from 'react-router-dom';
-import { useUser } from '../../UserContxt';
+import { useUser } from '../../UserContext';
 const SearchBar = () => {
     const [show, setShow] = useState(false);
     const [searchedTerm, setSearchedTerm] = useState('');

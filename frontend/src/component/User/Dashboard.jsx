@@ -3,7 +3,7 @@ import axios from 'axios';
 import { FaIndianRupeeSign, FaPlus, FaMinus, FaBell } from "react-icons/fa6";
 import { Chart as ChartJS, ArcElement, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { useUser } from '../../UserContxt';
+import { useUser } from '../../UserContext';
 
 ChartJS.register(
     ArcElement,
