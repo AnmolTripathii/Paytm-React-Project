@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => {
 
     const fetchUserDetails = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/api/v1/user/get-user-details', {
+            const response = await axios.get('https://paytm-react-project.vercel.app/api/v1/user/get-user-details', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
