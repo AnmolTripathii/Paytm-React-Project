@@ -131,6 +131,13 @@ function Account() {
     }
   }
 
+  if (!localStorage.getItem('token')) {
+    return (
+        <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
+            <h1 className="text-3xl font-bold">Session has expired. Please log in again.</h1>
+        </div>
+    );
+}
   return (
     <div className="p-6 lg:p-12 bg-slate-950 text-white flex flex-col lg:h-[93.1vh] gap-8 lg:gap-4">
       <h1 className="font-bold text-2xl lg:text-5xl mb-4 text-center">Your Profile</h1>

@@ -48,6 +48,14 @@ function Pay() {
   }, [debouncedSearchedTerm]);
 
 
+  if (!localStorage.getItem('token')) {
+    return (
+        <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
+            <h1 className="text-3xl font-bold">Session has expired. Please log in again.</h1>
+        </div>
+    );
+}
+
   return (
     <div className="p-4 lg:p-8 bg-slate-950 flex flex-col gap-4 lg:gap-8 text-white lg:h-[93.1vh]">
       <h1 className='font-bold text-2xl lg:text-6xl mb-4'>Make a payment</h1>

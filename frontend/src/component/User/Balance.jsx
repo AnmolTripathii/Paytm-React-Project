@@ -47,6 +47,13 @@ function Balance() {
     }
   };
 
+  if (!localStorage.getItem('token')) {
+    return (
+        <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
+            <h1 className="text-3xl font-bold">Session has expired. Please log in again.</h1>
+        </div>
+    );
+}
   return (
     <div className='flex gap-12 bg-[#F5F5F5] lg:h-[93.1vh] flex-col items-start justify-start p-8'>
       <div className='flex flex-col items-start gap-8 justify-start'>

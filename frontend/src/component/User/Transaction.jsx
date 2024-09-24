@@ -44,6 +44,14 @@ function Transaction() {
     fetchHistory();
   }, []);
 
+
+  if (!localStorage.getItem('token')) {
+    return (
+        <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
+            <h1 className="text-3xl font-bold">Session has expired. Please log in again.</h1>
+        </div>
+    );
+}
   return (
     <div className='min-h-[93.3vh] bg-black flex flex-col justify-start gap-24'>
       <div className='bg-slate-900 flex flex-col gap-4 p-4'>
