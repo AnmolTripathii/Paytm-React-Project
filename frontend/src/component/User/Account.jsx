@@ -27,7 +27,7 @@ function Account() {
       try {
         const token = localStorage.getItem('token');
         const response = await axios.get(
-          'https://payment-backend-ten.vercel.app/api/v1/user/get-user-details',
+          'https://paytm-react-project.vercel.app/api/v1/user/get-user-details',
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -73,7 +73,7 @@ function Account() {
       try {
         const token = localStorage.getItem('token');
         const response = await axios.post(
-          'https://payment-backend-ten.vercel.app/api/v1/user/updateProfilePic',
+          'https://paytm-react-project.vercel.app/api/v1/user/updateProfilePic',
           formData,
           {
             headers: {
@@ -110,7 +110,7 @@ function Account() {
       setShowPopup(false);
       const token = localStorage.getItem('token');
       const response = await axios.put(
-        'https://payment-backend-ten.vercel.app/api/v1/user/update', 
+        'https://paytm-react-project.vercel.app/api/v1/user/update', 
         {
           firstName: fname,
           lastName: lname

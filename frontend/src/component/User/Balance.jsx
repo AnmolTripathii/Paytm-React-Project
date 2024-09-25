@@ -33,7 +33,7 @@ function Balance() {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'https://payment-backend-ten.vercel.app/api/v1/account/balance',
+        'https://paytm-react-project.vercel.app/api/v1/account/balance',
         { password },
         {
           headers: {

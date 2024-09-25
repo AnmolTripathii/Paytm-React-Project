@@ -33,7 +33,7 @@ function Payment() {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'https://payment-backend-ten.vercel.app/api/v1/account/getReceiver',
+        'https://paytm-react-project.vercel.app/api/v1/account/getReceiver',
         { to: id },
         {
           headers: {
@@ -61,7 +61,7 @@ function Payment() {
       const token = localStorage.getItem('token');
 
       const response = await axios.post(
-        'https://payment-backend-ten.vercel.app/api/v1/account/person-transaction-history',
+        'https://paytm-react-project.vercel.app/api/v1/account/person-transaction-history',
         { personId: id },
         {
           headers: {
@@ -136,7 +136,7 @@ function Payment() {
       };
 
       const response = await axios.post(
-        'https://payment-backend-ten.vercel.app/api/v1/account/transfer',
+        'https://paytm-react-project.vercel.app/api/v1/account/transfer',
         transferData,
         {
           headers: {
