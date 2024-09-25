@@ -11,7 +11,7 @@ require('dotenv').config({
 app.use(cors({
     origin: 'https://paytm-react-project-jgkr.vercel.app' // Allow requests from this origin
 }));
-app.options('*', cors(corsOptions)); // Handle preflight requests for all routes
+ // Handle preflight requests for all routes
 
 // Middleware to parse JSON requests
 app.use(express.json());
