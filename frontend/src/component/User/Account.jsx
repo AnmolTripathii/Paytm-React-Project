@@ -152,7 +152,7 @@ function Account() {
             </div>
           </div>
           <div className="flex flex-col items-center gap-4 w-full">
-            <button onClick={()=>setShowUpdate(true)} className="w-full px-4 py-2 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600">
+            <button  className="w-full px-4 py-2 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600">
               Update Profile
             </button>
             <button className="w-full px-4 py-2 bg-red-500 text-white font-bold rounded-lg hover:bg-red-600">
