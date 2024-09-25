@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Loader } from 'rsuite';
 import { FaIndianRupeeSign, FaPlus, FaMinus, FaBell } from "react-icons/fa6";
 import { Chart as ChartJS, ArcElement, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler } from "chart.js";
 import { Line } from "react-chartjs-2";
@@ -154,6 +155,15 @@ const Dashboard = () => {
             });
         }
     }, [weeklyData, loading]);
+
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
+                <Loader size="lg" content="Loading..." vertical />
+            </div>
+        );
+    }
+
     if (!localStorage.getItem('token')) {
         return (
             <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
