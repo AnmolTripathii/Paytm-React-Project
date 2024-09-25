@@ -17,7 +17,7 @@ const SignUp = () => {
 
     try {
       const response = await axios.post(
-        'https://paytm-react-project.vercel.app/api/v1/user/signup',
+        'https://payment-backend-ten.vercel.app/api/v1/user/signup',
         { firstName, lastName, username, password }
       );
       localStorage.setItem('token', response.data.token);

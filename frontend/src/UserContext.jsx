@@ -22,7 +22,7 @@ export const UserProvider = ({ children }) => {
 
         try {
             const response = await axios.get(
-                'https://paytm-react-project.vercel.app/api/v1/user/get-user-details',
+                'https://payment-backend-ten.vercel.app/api/v1/user/get-user-details',
                 {
                   headers: {
                     Authorization: `Bearer ${token}`,

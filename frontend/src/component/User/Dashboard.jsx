@@ -46,7 +46,7 @@ const Dashboard = () => {
         try {
           const token = localStorage.getItem('token');
           const response = await axios.get(
-            'https://paytm-react-project.vercel.app/api/v1/user/get-user-details',
+            'https://payment-backend-ten.vercel.app/api/v1/user/get-user-details',
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -65,7 +65,7 @@ const Dashboard = () => {
         try {
             const token = localStorage.getItem('token');
 
-            const response = await axios.get("https://paytm-react-project.vercel.app/api/v1/account/dashboard-transaction-info", {
+            const response = await axios.get("https://payment-backend-ten.vercel.app/api/v1/account/dashboard-transaction-info", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -94,7 +94,7 @@ const Dashboard = () => {
     const fetchWeeklyTransactions = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('https://paytm-react-project.vercel.app/api/v1/account/transaction-weekly-data', {
+            const response = await axios.get('https://payment-backend-ten.vercel.app/api/v1/account/transaction-weekly-data', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
