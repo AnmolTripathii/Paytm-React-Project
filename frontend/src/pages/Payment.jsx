@@ -49,7 +49,7 @@ function Payment() {
       toast.error("Failed to fetch receiver.");
     }
     finally {
-      setLoading(false);
+      setIsLoading(false);
     }
 
   };
