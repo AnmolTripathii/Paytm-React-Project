@@ -126,10 +126,10 @@ const Sidebar = () => {
                             <FaUser />
                             <span className="ml-4">Account</span>
                         </NavLink>
-                        <div className="flex items-center text-xl">
+                        <button onClick={LogoutHandle} className="flex items-center text-xl">
                             <FaSignOutAlt />
                             <span className="ml-4">Quit</span>
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>
