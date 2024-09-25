@@ -8,25 +8,27 @@ import { FaUserCheck } from "react-icons/fa";
 import { FaTimes } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';  
-import 'react-toastify/dist/ReactToastify.css'; 
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Loader } from 'rsuite'; 
+import 'react-toastify/dist/ReactToastify.css';
+import { Loader } from 'rsuite';
 import 'rsuite/dist/rsuite.min.css';
 function Payment() {
-  const {id} = useParams()
+  const { id } = useParams()
   const [payPopup, setPayPopup] = useState(false)
   const [amount, setAmount] = useState('');
   const [message, setMessage] = useState('');
   const [passwordPopup, setPasswordPopup] = useState(false);
   const [password, setPassword] = useState("");
-  const [transactions,setTransactions]=useState([])
+  const [transactions, setTransactions] = useState([])
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [status,setStatus]= useState(true)
+  const [status, setStatus] = useState(true)
   const historyEndRef = useRef(null);
   const [paying, setPaying] = useState(false);
-  const [receiver,setReceiver] = useState('')
+  const [receiver, setReceiver] = useState('')
+  const [isLoading, setIsLoading] = useState(true);
+
   const fetchReceiver = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -44,40 +46,47 @@ function Payment() {
     } catch (err) {
       console.error("Error fetching receiver:", err);
       setError("Failed to fetch receiver.");
+      toast.error("Failed to fetch receiver.");
     }
+    finally {
+      setLoading(false);
+    }
+
   };
 
   const fetchTransactionHistory = async () => {
     try {
-      setLoading(true); 
-      setError(null);  
-      const token = localStorage.getItem('token'); 
-  
+      setLoading(true);
+      setError(null);
+      const token = localStorage.getItem('token');
+
       const response = await axios.post(
         'https://paytm-react-project.vercel.app/api/v1/account/person-transaction-history',
-        { personId: id },  
+        { personId: id },
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
-  
+
       if (response.data.message === 'No transactions found with this person') {
-        setTransactions([]); 
+        setTransactions([]);
         setError('No transactions found with this person.');
+        toast.error('No transactions found with this person.')
       } else {
-        setTransactions(response.data); 
+        setTransactions(response.data);
       }
-  
+
     } catch (err) {
       console.error('Error fetching transaction history:', err);
       setError('Failed to fetch transaction history.');
+      toast.error('Failed to fetch transaction history.')
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
-  
+
 
   useEffect(() => {
     if (historyEndRef.current) {
@@ -91,15 +100,15 @@ function Payment() {
       fetchTransactionHistory();
     }
   }, [id]);
-  
+
 
   const letter = (firstName) => {
     return firstName[0].toUpperCase();
   };
-  
+
 
   const statusIcon = () => {
-    if (status===true) {
+    if (status === true) {
       return <IoMdDoneAll className="text-green-500" size={20} />;
     } else {
       return <MdOutlineCancel className="text-red-500" size={20} />;
@@ -114,7 +123,7 @@ function Payment() {
     setPasswordPopup(false)
     setPaying(true);
     try {
-      const token = localStorage.getItem('token'); 
+      const token = localStorage.getItem('token');
       if (!token) {
         return setError("Authentication token not found");
       }
@@ -123,7 +132,7 @@ function Payment() {
         amount: Number(amount),
         to: id,
         password,
-        msgAttached: message, 
+        msgAttached: message,
       };
 
       const response = await axios.post(
@@ -139,7 +148,7 @@ function Payment() {
       if (response.status === 200) {
         setPayPopup(false);
         setPasswordPopup(false);
-        toast.success('Transfer successful!'); 
+        toast.success('Transfer successful!');
         setTimeout(() => {
           window.location.reload();
         }, 2000);
@@ -164,14 +173,22 @@ function Payment() {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
+        <Loader size="lg" content="Loading..." vertical />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-slate-950 text-white">
       <TopInfo user={receiver} />
       <div className="flex-grow overflow-auto h-full bg-slate-800 p-4 sm:p-2">
         <div className="max-h-[79vh] overflow-y-auto custom-scrollbar">
-          {transactions.map((transaction,index) => (
+          {transactions.map((transaction, index) => (
             <div
-            key={index}
+              key={index}
               className={`flex ${transaction.type ? 'justify-end' : 'justify-start'
                 } mb-4 px-3`}
             >
@@ -180,7 +197,7 @@ function Payment() {
                   }`}
               >
                 <p className="font-bold md:text-lg text-xs">
-                  {transaction.type ?`You Paid ${receiver.firstName}`:`${receiver.firstName} Paid You` }
+                  {transaction.type ? `You Paid ${receiver.firstName}` : `${receiver.firstName} Paid You`}
                 </p>
                 <p className="text-sm text-gray-400">{transaction.purpose}</p>
                 <div className="md:text-xl text-base lg:text-2xl flex items-center font-semibold md:mt-2">
@@ -218,7 +235,7 @@ function Payment() {
             </button>
 
             <div className="flex justify-center items-center">
-            {receiver.profilePic ? (
+              {receiver.profilePic ? (
                 <img
                   src={receiver.profilePic}
                   alt={receiver.firstName}
@@ -226,12 +243,12 @@ function Payment() {
                 />
               ) : (
                 <div className="w-16 h-16 bg-purple-400 rounded-full flex justify-center items-center text-white text-3xl">
-                {letter(receiver.firstName)}
-              </div>
+                  {letter(receiver.firstName)}
+                </div>
               )}
-                
-            
-              
+
+
+
             </div>
 
             <div className="text-center">
@@ -277,7 +294,7 @@ function Payment() {
           </div>
         </div>
       )}
-       {paying && (
+      {paying && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
           <Loader size="lg" content="Processing payment..." vertical />
         </div>
@@ -315,7 +332,7 @@ function Payment() {
           </div>
         </div>
       )}
-      
+
       <ToastContainer />
     </div>
   );

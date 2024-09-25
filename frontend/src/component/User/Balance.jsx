@@ -3,8 +3,10 @@ import { FaIndianRupeeSign } from "react-icons/fa6";
 import { AiOutlineClose } from 'react-icons/ai';
 import { gsap } from "gsap";
 import axios from 'axios';
-import { Loader, Message, useToaster } from 'rsuite';
+import { Loader } from 'rsuite';
 import 'rsuite/dist/rsuite.min.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Balance() {
   const [openBox, setOpenBox] = useState(false);
@@ -13,7 +15,6 @@ function Balance() {
   const [balance, setBalance] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const toaster = useToaster();
 
   useEffect(() => {
     if (openBox) {
@@ -28,6 +29,7 @@ function Balance() {
   const checkHandle = async () => {
     setLoading(true);
     setOpenBox(false);
+    setShowBalance(false); // Ensure balance is hidden when checking
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
@@ -40,22 +42,13 @@ function Balance() {
         }
       );
       setBalance(response.data.balance);
-      setShowBalance(true);
+      setShowBalance(true); // Only show balance when there's no error
       setLoading(false);
     } catch (error) {
+      toast.error("Error fetching balance. Please try again."); // Show error toast
       setLoading(false);
-      setShowBalance(false); // Ensure balance is not shown in case of error
-      console.log("Error fetching Balance", error);
-
-      toaster.push(
-        <Message type="error" duration={5000}>
-          Error fetching balance. Please try again.
-        </Message>,
-        { placement: 'topCenter' }
-      );
     } finally {
-      setLoading(false);
-      setPassword('');
+      setPassword(''); 
     }
   };
 
@@ -69,6 +62,8 @@ function Balance() {
 
   return (
     <div className='flex gap-12 bg-[#F5F5F5] lg:h-[93.1vh] flex-col items-start justify-start p-8'>
+      <ToastContainer /> {/* Toast container to display toasts */}
+      
       <div className='flex flex-col items-start gap-8 justify-start'>
         <h1 className='font-bold text-2xl lg:text-6xl text-slate-950'>
           Check Balance
