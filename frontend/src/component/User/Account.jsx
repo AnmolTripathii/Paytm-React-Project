@@ -1,28 +1,19 @@
-import React, { useState,useEffect,useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FaRegUserCircle, FaCamera } from "react-icons/fa";
 import axios from 'axios';
 import { gsap } from "gsap";
 import { AiOutlineClose } from 'react-icons/ai';
-import { Loader } from 'rsuite'; 
-
+import { Loader } from 'rsuite';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Account() {
   const [image, setImage] = useState(null);
   const [showPopup, setShowPopup] = useState(false)
-  const [email, , setEmail] = useState('')
-  const [number, setNumber] = useState('')
+  const [fname, setFname] = useState('')
+  const [lname, setLname] = useState('')
   const dialogRef = useRef(null);
   const [loading, setLoading] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const [showUpdate,setShowUpdate] = useState(false)
-  const [updateFormData,setUpdateFormData]=useState(
-    {
-      firstName: '',
-      lastName: '',
-      username: '',
-      email: '',
-      phone: '',
-    }
-  )
 
   const [user, setUser] = useState({
     firstName: '',
@@ -31,8 +22,8 @@ function Account() {
     email: '',
     phone: '',
   });
-  useEffect(()=>{
-    const handleDetail= async ()=>{
+  useEffect(() => {
+    const handleDetail = async () => {
       try {
         const token = localStorage.getItem('token');
         const response = await axios.get(
@@ -51,14 +42,14 @@ function Account() {
           email: '',
           phone: '',
         });
-        setImage(response.data.profilePic||'')
+        setImage(response.data.profilePic || '')
       } catch (error) {
-        console.log("Error featichin the details",error)
+        console.log("Error featichin the details", error)
       }
     }
 
     handleDetail()
-  },[])
+  }, [])
   useEffect(() => {
     if (showPopup) {
       gsap.fromTo(
@@ -70,15 +61,15 @@ function Account() {
   }, [showPopup]);
 
   const handleImageChange = async (e) => {
-    const file = e.target.files[0]; 
+    const file = e.target.files[0];
     console.log(file);
-    
+
     if (file) {
       const formData = new FormData();
-      formData.append('file', file); 
+      formData.append('file', file);
       setLoading(true);
       console.log(formData);
-  
+
       try {
         const token = localStorage.getItem('token');
         const response = await axios.post(
@@ -91,45 +82,81 @@ function Account() {
             },
           }
         );
-  
+
         console.log(response.data);
-        setImage(response.data.url); 
-  
+        setImage(response.data.url);
+
       } catch (error) {
         console.log('Failed to upload image', error);
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     } else {
       console.log("File is required");
     }
   };
-  
+
 
   const handleContactInfo = () => {
     setShowPopup(true)
   };
-  const submitHandle= async()=>{
-    setShowPopup(false)
-    
+  const submitHandle = async () => {
+    if (!fname || !lname) {
+      alert("Both first name and last name are required.");
+      return;
+    }
+  
+    try {
+      setShowPopup(false);
+      const token = localStorage.getItem('token');
+      const response = await axios.put(
+        'https://paytm-react-project.vercel.app/api/v1/user/update', 
+        {
+          firstName: fname,
+          lastName: lname
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.status === 200) {
+        console.log(response.data.message); 
+      }
+      toast.success('User Updated');
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        toast.error(error.response.data.message) 
+      } else {
+        toast.error('An error occurred while updating the information');
+      }
+    }
   }
+  
 
   if (!localStorage.getItem('token')) {
     return (
-        <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
-            <h1 className="text-3xl font-bold">Session has expired. Please log in again.</h1>
-        </div>
+      <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
+        <h1 className="text-3xl font-bold">Session has expired. Please log in again.</h1>
+      </div>
     );
-}
+  }
   return (
+
     <div className="p-6 lg:p-12 bg-slate-950 text-white flex flex-col lg:h-[93.1vh] overflow-y-auto gap-8 lg:gap-4">
+      <ToastContainer />
       <h1 className="font-bold text-2xl lg:text-5xl mb-4 text-center">Your Profile</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full lg:w-3/4 mx-auto">
         <div className="flex flex-col items-center gap-6 bg-white/10 backdrop-blur-lg p-8 rounded-lg shadow-lg w-full glass-effect">
           <div className="relative">
-          {loading ? (
-              <Loader size="lg" content="Uploading..." /> 
+            {loading ? (
+              <Loader size="lg" content="Uploading..." />
             ) : (
               image ? (
                 <img
@@ -152,7 +179,7 @@ function Account() {
             </div>
           </div>
           <div className="flex flex-col items-center gap-4 w-full">
-            <button  className="w-full px-4 py-2 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600">
+            <button onClick={handleContactInfo} className="w-full px-4 py-2 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600">
               Update Profile
             </button>
             <button className="w-full px-4 py-2 bg-red-500 text-white font-bold rounded-lg hover:bg-red-600">
@@ -226,11 +253,9 @@ function Account() {
             <div className="flex flex-col items-center justify-center">
               <p className="text-lg font-semibold mb-4">Contact information is missing</p>
               <button
-                onClick={handleContactInfo}
-                disabled={isLoading}
                 className="px-4 py-2 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-600"
               >
-                {isLoading ? <Loader content="Loading..." /> : "Add Contact Info"}
+                Add Contact Info
               </button>
             </div>
           )}
@@ -258,27 +283,29 @@ function Account() {
             </button>
 
             <h2 className="text-2xl font-semibold text-slate-950 mb-4">
-              Enter Your Email
+              Enter Your First Name
             </h2>
 
             <input
-              type="email"
+              type="text"
               className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-slate-950"
-              placeholder="Enter Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter First Name"
+              value={fname}
+              required
+              onChange={(e) => setFname(e.target.value)}
             />
 
             <h2 className="text-2xl font-semibold text-slate-950 mb-4">
-              Enter Your Phone Number
+              Enter Your Last Name
             </h2>
 
             <input
-              type="tel"
+              type="text"
               className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-slate-950"
-              placeholder="Enter Phone Number"
-              value={number}
-              onChange={(e) => setNumber(e.target.value)}
+              placeholder="Enter Last Name"
+              value={lname}
+              required
+              onChange={(e) => setLname(e.target.value)}
             />
 
 
@@ -293,7 +320,7 @@ function Account() {
         </div>
       )}
 
-{showUpdate && (
+      {/* {showUpdate && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white w-full max-w-lg p-8 rounded-lg shadow-lg">
             <h2 className="text-2xl font-bold mb-6 text-slate-900">Update Profile</h2>
@@ -382,7 +409,7 @@ function Account() {
             </form>
           </div>
         </div>
-      )}
+      )} */}
 
     </div>
   );

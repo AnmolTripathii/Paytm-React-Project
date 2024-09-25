@@ -38,8 +38,8 @@ router.post("/balance", authMiddleware, async (req, res) => {
     }
     else
 
-    res.json({
-        msg: "bhaag yha s",
+    res.status(401).json({
+        msg: "password incorrect",
     })
 });
 
