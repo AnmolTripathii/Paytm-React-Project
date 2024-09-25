@@ -5,16 +5,12 @@ require('dotenv').config({
     path: './.env' 
 });
 
-// Define CORS options
-const corsOptions = {
-    origin: 'https://paytm-react-project-jgkr.vercel.app', // Specify the allowed origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Specify allowed HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
-    credentials: true, // Allow credentials (cookies, authorization headers)
-};
+
 
 // Use CORS middleware with options
-app.use(cors(corsOptions));
+app.use(cors({
+    origin: 'https://paytm-react-project-jgkr.vercel.app' // Allow requests from this origin
+}));
 app.options('*', cors(corsOptions)); // Handle preflight requests for all routes
 
 // Middleware to parse JSON requests
