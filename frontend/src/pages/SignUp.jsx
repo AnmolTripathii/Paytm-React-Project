@@ -107,7 +107,7 @@ const SignUp = () => {
                 <input
                   type="password"
                   id="password"
-                  placeholder="Enter Your Password"
+                  placeholder="Enter Your Password(min 5 character)"
                   className="mt-1 block w-full bg-slate-700 border border-slate-600 text-white rounded-md shadow-sm focus:ring-slate-500 focus:border-slate-500 sm:text-sm h-12 px-4"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
