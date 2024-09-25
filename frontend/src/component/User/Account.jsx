@@ -288,7 +288,7 @@ function Account() {
 
             <input
               type="text"
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-slate-950"
+              className="w-full px-4 py-2 border text-black border-gray-300 rounded focus:outline-none focus:border-slate-950"
               placeholder="Enter First Name"
               value={fname}
               required
@@ -301,7 +301,7 @@ function Account() {
 
             <input
               type="text"
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-slate-950"
+              className="w-full px-4 py-2 border text-black border-gray-300 rounded focus:outline-none focus:border-slate-950"
               placeholder="Enter Last Name"
               value={lname}
               required
