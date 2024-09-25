@@ -98,7 +98,7 @@ function Account() {
       } catch (error) {
         console.log('Failed to upload image', error);
       } finally {
-        setLoading(false); // Ensure loading state is reset after the request
+        setLoading(false); 
       }
     } else {
       console.log("File is required");
@@ -111,24 +111,7 @@ function Account() {
   };
   const submitHandle= async()=>{
     setShowPopup(false)
-    setIsLoading(true)
-    try {
-      response= await axios.post(
-        "",
-        {
-          email,
-          number
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-    } catch (error) {
-      setIsLoading(false)
-      console.log("Error saving the contact info",error)
-    }
+    
   }
 
   if (!localStorage.getItem('token')) {
@@ -315,7 +298,7 @@ function Account() {
           <div className="bg-white w-full max-w-lg p-8 rounded-lg shadow-lg">
             <h2 className="text-2xl font-bold mb-6 text-slate-900">Update Profile</h2>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form className="space-y-4">
               <div>
                 <label className="block text-slate-700 font-medium mb-2">First Name</label>
                 <input
