@@ -9,7 +9,7 @@ require('dotenv').config({
 
 
 app.use(cors({
-    origin: '*'
+    origin: 'https://paytm-react-project-jgkr.vercel.app'
 }));
 
 
