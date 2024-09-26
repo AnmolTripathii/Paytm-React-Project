@@ -4,14 +4,7 @@ const { boolean } = require('zod');
 
 
 
-try{
-    const connectionInstance= await mongoose.connect(process.env.mongoDbUrl)
-    console.log(`\n db connected !! DB HOST : ${connectionInstance.connection.host}`);
-}
-catch (error){
-    console.log("MONGOOSE CONNECTION ERROR",error);
-    process.exit(1)
-}
+
 const transactionSchema = new mongoose.Schema({
     oldBalance: {
         type: Number,

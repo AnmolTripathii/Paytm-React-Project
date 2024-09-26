@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const mongoose = require('mongoose');
 require('dotenv').config({
     path: './.env' 
 });
@@ -26,9 +27,26 @@ app.get("/", (req, res) => {
     res.send("backend is running");
 });
 
+const connectDB = async()=>{
+    try{
+        const connectionInstance= await mongoose.connect(process.env.MONGODB_URI)
+        console.log(`\n db connected !! DB HOST : ${connectionInstance.connection.host}`);
+    }
+    catch (error){
+        console.log("MONGOOSE CONNECTION ERROR",error);
+        process.exit(1)
+    }
+}
+connectDB()
+.then(()=>{
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, function () {
+        console.log(`Backend is running on port ${PORT}`);
+    });
+})
+.catch((err)=>{
+    console.log("MONGO db connection failed !!!",err)
+})
 
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, function () {
-    console.log(`Backend is running on port ${PORT}`);
-});
+
