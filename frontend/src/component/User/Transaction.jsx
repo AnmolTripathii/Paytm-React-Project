@@ -84,6 +84,7 @@ function Transaction() {
                   <FaRegUserCircle className="w-10 h-10 md:w-16 md:h-16 text-slate-400" />
                 )}
                 <div>
+                <h4 className='text-white font-bold'>{trans.withPerson}</h4>
                   <h4 className='text-white font-bold'>Message: {' '}{trans.message || 'No message attached'}</h4>
                   <p className='text-gray-400 text-sm'>{new Date(trans.date).toLocaleDateString()}</p>
                 </div>
