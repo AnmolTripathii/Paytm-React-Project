@@ -206,9 +206,9 @@ function Payment() {
                 <div className="flex flex-col items-start justify-start mt-1 md:mt-4">
                   <div className="flex  gap-1 text-xs md:text-sm text-gray-400">
                     {statusIcon(transaction.status)} {transaction.status} <br />
-                    {transaction.date}
+                    {new Date(transaction.date).toLocaleDateString()}
                   </div>
-                  <div className="self-end text-xs md:text-sm text-gray-400">{transaction.time}</div>
+                  <div className="self-end text-xs md:text-sm text-gray-400">{new Date(transaction.date).toLocaleTimeString()}</div>
                 </div>
               </div>
             </div>
