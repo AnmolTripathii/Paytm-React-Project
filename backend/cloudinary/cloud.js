@@ -4,8 +4,8 @@ const cloudinary = require('cloudinary').v2;
 async function uploadPhoto(filePath) {
 
     cloudinary.config({
-        cloud_name: 'dnnge30kx',
-        api_key: '168994328212588',
+        cloud_name: process.env.Cloud_Name,
+        api_key: process.env.Api_Key,
         api_secret: process.env.cloudinaryApiSecretKey,
     });
     try {
