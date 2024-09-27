@@ -56,7 +56,8 @@ const SignIn = () => {
                 <label htmlFor="username" className="block text-sm font-medium">Username</label>
                 <input
                   type="text"
-                  id="username"
+                  id="profileUsername"
+                  name='profileUsername'
                   placeholder="Enter Your Username"
                   className="mt-1 block w-full bg-gray-700 border border-gray-600 text-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm px-4 py-2"
                   value={signUsername}
@@ -68,7 +69,8 @@ const SignIn = () => {
                 <label htmlFor="password" className="block text-sm font-medium">Password</label>
                 <input
                   type="password"
-                  id="password"
+                  id="profilePassword"
+                  name='profilePassword'
                   placeholder="Enter Your Password"
                   className="mt-1 block w-full bg-gray-700 border border-gray-600 text-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm px-4 py-2"
                   value={signPassword}
