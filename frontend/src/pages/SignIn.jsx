@@ -53,7 +53,7 @@ const SignIn = () => {
             <h2 className="text-3xl md:text-5xl font-bold mb-8 text-center">Sign In</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="username" className="block text-sm font-medium">Username</label>
+                <label htmlFor="profileUsername" className="block text-sm font-medium">Username</label>
                 <input
                   type="text"
                   id="profileUsername"
@@ -66,7 +66,7 @@ const SignIn = () => {
                 />
               </div>
               <div>
-                <label htmlFor="password" className="block text-sm font-medium">Password</label>
+                <label htmlFor="profilePassword" className="block text-sm font-medium">Password</label>
                 <input
                   type="password"
                   id="profilePassword"
