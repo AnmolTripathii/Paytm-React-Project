@@ -73,18 +73,21 @@ const SearchBar = () => {
         <div className=" flex w-full justify-evenly items-center gap-4 px-4 py-2 bg-white shadow-md rounded-lg">
             <div className="relative w-full">
                 <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                <input type="search"  value={searchedTerm}
+                <input type="search"
+                id='input_field_3'
+                name='input_field_3'
+                  value={searchedTerm}
                     placeholder="Type to search..."
                     className="w-full pl-10 pr-3 py-2 rounded-full border border-gray-300 "
                     onChange={handleInputChange}  />
-                <input
+                {/* <input
                     id="searchedUser"
                     name="searchedUser"
                     className=' opacity-0 z-[-1] h-0 w-0'
                     type="search"
                     autocomplete="new-search"
                     value={hidden} onChange={handleHiddenChange}  
-                />
+                /> */}
 
                 {appearedUser.length > 0 && (
                     <div className={`absolute top-full ${appearedUser.length >= 9 ? 'h-[60vh]' : 'h-auto'} overflow-y-scroll custom-scrollbar left-0 w-full bg-gray-900 text-white shadow-lg rounded-lg mt-2 z-10  md:max-w-xl`}>
