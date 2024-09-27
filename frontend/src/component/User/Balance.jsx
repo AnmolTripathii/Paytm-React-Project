@@ -102,6 +102,7 @@ function Balance() {
               id="balancePassword"
               name="balancePassword"
               type="password"
+              autoComplete='off'
               className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-slate-950"
               placeholder="Enter password"
               value={balancePassword}
