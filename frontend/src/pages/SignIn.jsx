@@ -4,8 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import IMG from "../assets/side_2.jpg"; 
 
 const SignIn = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [signUsername, setSignUsername] = useState('');
+  const [signPassword, setSignPassword] = useState('');
   const [toastMessage, setToastMessage] = useState(null); 
   const navigate = useNavigate();
 
@@ -14,7 +14,8 @@ const SignIn = () => {
     try {
       const response = await axios.post(
         'https://paytm-react-project.vercel.app/api/v1/user/signin',
-        { username, password }
+        { username:signUsername,
+           password:signPassword }
       );
       
       localStorage.setItem('token', response.data.token);
@@ -58,8 +59,8 @@ const SignIn = () => {
                   id="username"
                   placeholder="Enter Your Username"
                   className="mt-1 block w-full bg-gray-700 border border-gray-600 text-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm px-4 py-2"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={signUsername}
+                  onChange={(e) => setSignUsername(e.target.value)}
                   required
                 />
               </div>
@@ -70,8 +71,8 @@ const SignIn = () => {
                   id="password"
                   placeholder="Enter Your Password"
                   className="mt-1 block w-full bg-gray-700 border border-gray-600 text-gray-300 rounded-md shadow-sm focus:ring-gray-500 focus:border-gray-500 sm:text-sm px-4 py-2"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={signPassword}
+                  onChange={(e) => setSignPassword(e.target.value)}
                   required
                 />
               </div>

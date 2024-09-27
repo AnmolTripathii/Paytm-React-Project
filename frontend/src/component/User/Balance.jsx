@@ -13,7 +13,7 @@ function Balance() {
   const dialogRef = useRef(null);
   const [showBalance, setShowBalance] = useState(false);
   const [balance, setBalance] = useState('');
-  const [password, setPassword] = useState('');
+  const [balancePassword, setBalancePassword] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ function Balance() {
       const token = localStorage.getItem('token');
       const response = await axios.post(
         'https://paytm-react-project.vercel.app/api/v1/account/balance',
-        { password },
+        { password: balancePassword },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -48,7 +48,7 @@ function Balance() {
       toast.error("Error fetching balance. Please try again."); // Show error toast
       setLoading(false);
     } finally {
-      setPassword(''); 
+      setPassword('');
     }
   };
 
@@ -63,7 +63,7 @@ function Balance() {
   return (
     <div className='flex gap-12 bg-[#F5F5F5] lg:h-[93.1vh] flex-col items-start justify-start p-8'>
       <ToastContainer /> {/* Toast container to display toasts */}
-      
+
       <div className='flex flex-col items-start gap-8 justify-start'>
         <h1 className='font-bold text-2xl lg:text-6xl text-slate-950'>
           Check Balance
@@ -99,11 +99,13 @@ function Balance() {
             </h2>
 
             <input
+              id="balancePassword"
+              name="balancePassword"
               type="password"
               className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-slate-950"
               placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={balancePassword}
+              onChange={(e) => setBalancePassword(e.target.value)}
             />
 
             <button

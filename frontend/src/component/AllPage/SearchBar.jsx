@@ -10,28 +10,28 @@ const SearchBar = () => {
     const [appearedUser, setAppearedUser] = useState([]);
     const [debouncedSearchedTerm] = useDebounce(searchedTerm, 200);
     const navigate = useNavigate()
-    const [image,setImage] = useState('')
+    const [image, setImage] = useState('')
 
-    const handleDetail= async ()=>{
+    const handleDetail = async () => {
         try {
-          const token = localStorage.getItem('token');
-          const response = await axios.get(
-            'https://paytm-react-project.vercel.app/api/v1/user/get-user-details',
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          )
-          console.log(response)
-          setImage(response.data.profilePic||'')
+            const token = localStorage.getItem('token');
+            const response = await axios.get(
+                'https://paytm-react-project.vercel.app/api/v1/user/get-user-details',
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+            console.log(response)
+            setImage(response.data.profilePic || '')
         } catch (error) {
-          console.log("Error featichin the details",error)
+            console.log("Error featichin the details", error)
         }
-      }
-      useEffect(()=>{
+    }
+    useEffect(() => {
         handleDetail()
-      },[])
+    }, [])
     useEffect(() => {
         const getUser = async () => {
             if (debouncedSearchedTerm) {
@@ -71,7 +71,10 @@ const SearchBar = () => {
             <div className="relative w-full">
                 <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <input
+                    id="searchedUser"
+                    name="searchedUser"
                     type="text"
+                    value={searchedTerm}
                     placeholder="Type to search..."
                     className="w-full pl-10 pr-3 py-2 rounded-full border border-gray-300 "
                     onChange={handleInputChange}
@@ -101,7 +104,7 @@ const SearchBar = () => {
                 )}
             </div>
 
-            <div className='flex items-center justify-center p-2'>
+            <div className='relative flex items-center justify-center p-2'>
                 <button onClick={() => setShow(!show)}>
                     {image === '' ? (<FaUserCircle size={34} className="text-gray-800" />) : (<img
                         src={image}
