@@ -87,7 +87,7 @@ const SearchBar = () => {
                 />
 
                 {appearedUser.length > 0 && (
-                    <div className="absolute top-full left-0 w-full bg-gray-900 text-white shadow-lg rounded-lg mt-2 z-10 max-w-md sm:max-w-lg md:max-w-xl">
+                    <div className="absolute top-full h-[60vh] overflow-y-hidden custom-scrollbar left-0 w-full bg-gray-900 text-white shadow-lg rounded-lg mt-2 z-10 max-w-md sm:max-w-lg md:max-w-xl">
                         {appearedUser.map((user, index) => (
                             <div key={index}>
                                 <Link className='text-current no-underline' to={`/payment/${user._id}`}>
