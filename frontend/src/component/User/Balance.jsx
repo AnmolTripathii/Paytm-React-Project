@@ -48,7 +48,7 @@ function Balance() {
       toast.error("Error fetching balance. Please try again."); // Show error toast
       setLoading(false);
     } finally {
-      setPassword('');
+      setBalancePassword('');
     }
   };
 
