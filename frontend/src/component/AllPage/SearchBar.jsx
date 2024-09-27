@@ -75,7 +75,7 @@ const SearchBar = () => {
                     id="searchedUser"
                     name="searchedUser"
                     type="text"
-                    autocomplete="off"
+                    autocomplete="new-search"
                     value={searchedTerm}
                     placeholder="Type to search..."
                     className="w-full pl-10 pr-3 py-2 rounded-full border border-gray-300 "
