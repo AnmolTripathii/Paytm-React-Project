@@ -73,16 +73,16 @@ const SearchBar = () => {
         <div className=" flex w-full justify-evenly items-center gap-4 px-4 py-2 bg-white shadow-md rounded-lg">
             <div className="relative w-full">
                 <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                <input type="text" value={hidden} onChange={handleHiddenChange}  style={{ display: 'none' }} />
+                <input type="text"  value={searchedTerm}
+                    placeholder="Type to search..."
+                    className="w-full pl-10 pr-3 py-2 rounded-full border border-gray-300 "
+                    onChange={handleInputChange}  />
                 <input
                     id="searchedUser"
                     name="searchedUser"
                     type="search"
                     autocomplete="new-search"
-                    value={searchedTerm}
-                    placeholder="Type to search..."
-                    className="w-full pl-10 pr-3 py-2 rounded-full border border-gray-300 "
-                    onChange={handleInputChange}
+                    value={hidden} onChange={handleHiddenChange}  style={{ display: 'none' }}
                 />
 
                 {appearedUser.length > 0 && (
