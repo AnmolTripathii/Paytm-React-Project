@@ -74,10 +74,10 @@ const SearchBar = () => {
             <div className="relative w-full">
                 <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                 <input type="search"
-                id='input_field_3'
-                name='input_field_3'
+                id='infield_3'
+                name='infield_3'
                   value={searchedTerm}
-                    placeholder="Type to search..."
+                    // placeholder="Type to search..."
                     className="w-full pl-10 pr-3 py-2 rounded-full border border-gray-300 "
                     onChange={handleInputChange}  />
                 {/* <input
