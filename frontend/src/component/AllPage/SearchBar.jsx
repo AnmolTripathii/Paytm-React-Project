@@ -80,7 +80,7 @@ const SearchBar = () => {
                 <input
                     id="searchedUser"
                     name="searchedUser"
-                    className=' hidden'
+                    className=' opacity-0 z-[-1]'
                     type="search"
                     autocomplete="new-search"
                     value={hidden} onChange={handleHiddenChange}  
