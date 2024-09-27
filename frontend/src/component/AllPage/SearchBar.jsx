@@ -74,7 +74,7 @@ const SearchBar = () => {
                 <input
                     id="searchedUser"
                     name="searchedUser"
-                    type="text"
+                    type="search"
                     autocomplete="new-search"
                     value={searchedTerm}
                     placeholder="Type to search..."
