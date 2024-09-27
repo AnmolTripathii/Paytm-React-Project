@@ -72,7 +72,7 @@ const SearchBar = () => {
     return (
         <div className=" flex w-full justify-evenly items-center gap-4 px-4 py-2 bg-white shadow-md rounded-lg">
             <div className="relative w-full">
-                <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <FaSearch className="absolute left-3 top-[34%] transform -translate-y-1/2 text-gray-400" />
                 <input type="text"  value={searchedTerm}
                     placeholder="Type to search..."
                     className="w-full pl-10 pr-3 py-2 rounded-full border border-gray-300 "
@@ -80,7 +80,7 @@ const SearchBar = () => {
                 <input
                     id="searchedUser"
                     name="searchedUser"
-                    className=' opacity-0 z-[-1]'
+                    className=' opacity-0 z-[-1] h-0 w-0'
                     type="search"
                     autocomplete="new-search"
                     value={hidden} onChange={handleHiddenChange}  
