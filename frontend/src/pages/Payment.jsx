@@ -313,6 +313,8 @@ function Payment() {
 
             <div className="w-full">
               <input
+                id="payPassword" 
+                name="payPassword"
                 type="password"
                 className="w-full py-2 px-4 bg-slate-700 text-gray-300 rounded-lg focus:outline-none focus:bg-slate-600"
                 placeholder="Enter your password"
