@@ -52,6 +52,11 @@ function Balance() {
     }
   };
 
+  const closeHandle= ()=>{
+    setOpenBox(false)
+    setBalancePassword('');
+  }
+
   if (!localStorage.getItem('token')) {
     return (
       <div className="flex items-center justify-center h-screen bg-gray-900 text-white">
@@ -89,7 +94,7 @@ function Balance() {
           <div ref={dialogRef} className="relative flex flex-col items-center gap-6 bg-white p-8 rounded-lg shadow-lg max-w-md w-full border-2 border-black">
             <button
               className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
-              onClick={() => setOpenBox(false)}
+              onClick={closeHandle}
             >
               <AiOutlineClose size={24} />
             </button>

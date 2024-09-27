@@ -172,6 +172,10 @@ function Payment() {
       setPassword('');
     }
   };
+  const closingHandle= ()=>{
+    setPasswordPopup(false)
+    setPassword('')
+  }
 
   if (isLoading) {
     return (
@@ -304,7 +308,7 @@ function Payment() {
           <div className="bg-slate-800 w-96 h-auto p-8 rounded-lg relative shadow-lg space-y-6">
             <button
               className="absolute top-3 right-3 text-gray-400 hover:text-gray-300"
-              onClick={() => setPasswordPopup(false)}
+              onClick={closingHandle}
             >
               <FaTimes size={20} />
             </button>
