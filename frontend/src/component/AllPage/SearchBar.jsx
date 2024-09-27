@@ -10,6 +10,7 @@ const SearchBar = () => {
     const [appearedUser, setAppearedUser] = useState([]);
     const [debouncedSearchedTerm] = useDebounce(searchedTerm, 200);
     const navigate = useNavigate()
+    const [hidden,setHidden]=useState('')
     const [image, setImage] = useState('')
 
     const handleDetail = async () => {
@@ -57,7 +58,9 @@ const SearchBar = () => {
         };
         getUser();
     }, [debouncedSearchedTerm]);
-
+    const handleHiddenChange = (e)=>{
+        setHidden(e.target.value)
+    }
     const handleInputChange = (e) => {
         setSearchedTerm(e.target.value);
     };
@@ -70,7 +73,7 @@ const SearchBar = () => {
         <div className=" flex w-full justify-evenly items-center gap-4 px-4 py-2 bg-white shadow-md rounded-lg">
             <div className="relative w-full">
                 <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-                <input type="text" style={{ display: 'none' }} />
+                <input type="text" value={hidden} onChange={handleHiddenChange}  style={{ display: 'none' }} />
                 <input
                     id="searchedUser"
                     name="searchedUser"
