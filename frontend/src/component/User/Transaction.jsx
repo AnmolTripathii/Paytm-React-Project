@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { Loader } from 'rsuite'; // Importing React Suite Loader
 import 'rsuite/dist/rsuite.min.css';
@@ -9,6 +9,7 @@ function Transaction() {
   const [transaction, setTransaction] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const scrollableDivRef = useRef(null);
 
   const fetchHistory = async () => {
     try {
@@ -44,6 +45,11 @@ function Transaction() {
     fetchHistory();
   }, []);
 
+  useEffect(() => {
+    if (scrollableDivRef.current) {
+      scrollableDivRef.current.scrollTop = 0;
+    }
+  }, [transaction]);
 
   if (!localStorage.getItem('token')) {
     return (
@@ -61,7 +67,9 @@ function Transaction() {
         </h3>
       </div>
 
-      <div className='bg-slate-800 h-[60vh] flex flex-col-reverse overflow-y-auto mx-2 custom-scrollbar p-6 lg:mx-8 border-2 border-gray-700 rounded-lg '>
+      <div
+      ref={scrollableDivRef}
+       className='bg-slate-800 h-[60vh] flex flex-col-reverse  overflow-y-auto mx-2 custom-scrollbar p-6 lg:mx-8 border-2 border-gray-700 rounded-lg '>
         {loading ? (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
             <Loader size="lg" content="Processing Transactions..." vertical />
