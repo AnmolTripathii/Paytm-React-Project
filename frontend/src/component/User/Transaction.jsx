@@ -69,7 +69,7 @@ function Transaction() {
 
       <div
       ref={scrollableDivRef}
-       className='bg-slate-800 h-[60vh] flex   overflow-y-auto mx-2  custom-scrollbar p-6 lg:mx-8 border-2 border-gray-700 rounded-lg '>
+       className='bg-slate-800 h-[60vh] flex flex-col  overflow-y-auto mx-2  custom-scrollbar p-6 lg:mx-8 border-2 border-gray-700 rounded-lg '>
         {loading ? (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
             <Loader size="lg" content="Processing Transactions..." vertical />
