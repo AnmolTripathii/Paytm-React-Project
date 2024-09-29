@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import { Loader } from 'rsuite'; // Importing React Suite Loader
+import { Loader } from 'rsuite'; 
 import 'rsuite/dist/rsuite.min.css';
 import { FaIndianRupeeSign, FaPlus, FaMinus} from "react-icons/fa6";
 import { FaRegUserCircle } from 'react-icons/fa';
@@ -59,7 +59,7 @@ function Transaction() {
     );
 }
   return (
-    <div className=' bg-black flex flex-col justify-start gap-24 lg:h-[93.3vh] overflow-y-auto'>
+    <div className=' bg-black flex flex-col justify-start gap-20 lg:h-[93.3vh] overflow-y-auto'>
       <div className='bg-slate-900 flex flex-col gap-4 p-4'>
         <h1 className='font-bold text-2xl lg:text-6xl text-slate-400'>See Your Transaction</h1>
         <h3 className='font-bold text-xl lg:text-2xl underline underline-offset-3 text-slate-400'>
@@ -69,7 +69,7 @@ function Transaction() {
 
       <div
       ref={scrollableDivRef}
-       className='bg-slate-800 h-[60vh] flex flex-col-reverse  overflow-y-auto mx-2 custom-scrollbar p-6 lg:mx-8 border-2 border-gray-700 rounded-lg '>
+       className='bg-slate-800 h-[60vh] flex   overflow-y-auto mx-2  custom-scrollbar p-6 lg:mx-8 border-2 border-gray-700 rounded-lg '>
         {loading ? (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
             <Loader size="lg" content="Processing Transactions..." vertical />
@@ -79,7 +79,7 @@ function Transaction() {
         ) : transaction.length === 0 ? (
           <p className='text-center text-white'>No transactions found.</p>
         ) : (
-          transaction.map((trans, index) => (
+          [...transaction].reverse().map((trans, index) => (
             <div key={index} className='bg-slate-700 rounded-xl p-4 mb-4 flex justify-between items-center'>
               <div className='flex items-center gap-4'>
                 {trans.profilePic ? (
